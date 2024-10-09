@@ -5,35 +5,41 @@ using UnityEngine;
 public class ToutchingCollider : MonoBehaviour
 {
 
-    private bool colliding = false;
-    private float cn = 10f;
+    public bool colliding = false;
+    public double cn = 10f;
+    public SetActive sc;
+    
 
-    // Start is called before the first frame update
-    private void OnCollisionStay(Collider other)
+
+    public void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Planet")
+
+        if (other.CompareTag("Friendly Planet") && (!other.CompareTag("Finish")))
         {
             colliding = true;
-            Debug.Log("true");
         }
-        
+        else if (other.CompareTag("Finish"))
+        {
+            colliding = false;
+        }
+
+
     }
 
-    private void Update()
+    public void Update()
     {
-        cn -= 0.01f;
-        if (cn == 0f)
+        cn = cn - 1 * Time.deltaTime;
+        if (cn<1)
         {
             AfterTime();
         }
     }
 
-    private void AfterTime()
+    public void AfterTime()
     {
         if (colliding == false)
         {
             Destroy(this.gameObject);
-            Debug.Log("true");
         }
     }
 }

@@ -6,31 +6,32 @@ public class SpawnerScript : MonoBehaviour
 {
 
     public GameObject spherePrefab;
+    public bool finished = false;
 
     // Start is called before the first frame update
 
     
 
-    void Start()
+    public void Start()
     {
         
-        for(int i = 0; i<100; i++)
+        for(int i = 0; i<50; i++)
         {
-            transform.position += new Vector3(1f, -100f, 0f);
+            transform.position += new Vector3(1f, -50f, 0f);
             Instantiate(spherePrefab, transform.position, Quaternion.identity);
-            for (int j = 0; j < 100; j++)
+            for (int j = 0; j < 50; j++)
             {
-                transform.position += new Vector3(0f, 1f, -100f);
+                transform.position += new Vector3(0f, 1f, -50f);
                 Instantiate(spherePrefab, transform.position, Quaternion.identity);
-                for (int g = 0; g < 100; g++)
+                for (int g = 0; g < 50; g++)
                 {
                     transform.position += new Vector3(0f, 0f, 1f);
                     Instantiate(spherePrefab, transform.position, Quaternion.identity);
                 }
             }
         }
-        
 
+        finished = true;
         /*for (int i = 0; i < 10; i++)
         {
             transform.position += new Vector3(0f, 0.5f, 0f);
